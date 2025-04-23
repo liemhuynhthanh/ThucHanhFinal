@@ -7,6 +7,7 @@ import SearchStudent from "./pages/cau6";
 import { Cau7 } from "./pages/cau7";
 import { Cau8 } from "./pages/cau8"; // 👈 thêm dòng này
 import Cau9 from "./componets/StudentList"
+import Cau10 from "./pages/cau10";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Link to="/loc" className="text-blue-600 hover:underline">🏫 Lọc lớp</Link>
         <Link to="/todo" className="text-blue-600 hover:underline">📝 Công việc</Link>
         <Link to="/cau9" className="text-blue-600 hover:underline">📚 Danh sách sinh viên </Link>
+        
+ <Link to="/cau10" className="text-blue-600 hover:underline">📋 Danh sách sinh viên (Cau10)</Link>
       </nav>
 
       <Routes>
@@ -31,6 +34,8 @@ function App() {
         <Route path="/loc" element={<Cau7 />} />
         <Route path="/todo" element={<Cau8 />} /> {/* 👈 thêm route này */}
         <Route path="/cau9" element={<Cau9 />} />
+        
+        <Route path="/cau10" element={<Cau10 />}/>
       </Routes>
     </div>
   );
