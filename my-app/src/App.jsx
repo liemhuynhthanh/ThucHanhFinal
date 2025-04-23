@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+
+const initialStudents = [
+  { id: 1, name: "Nguyễn Văn A", class: "6A", age: 12 },
+  { id: 2, name: "Trần Thị B", class: "6B", age: 13 },
+
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [students, setStudents] = useState(initialStudents);
+
+  const handleDelete = (id) => {
+    const updatedList = students.filter((student) => student.id !== id);
+    setStudents(updatedList);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6">
+        <h1 className="text-2xl font-bold mb-4 text-center">📋 Danh sách sinh viên</h1>
+        <table className="w-full table-auto border-collapse">
+          <thead>
+            <tr className="bg-gray-200 text-left">
+              <th className="p-3">Tên</th>
+              <th className="p-3">Lớp</th>
+              <th className="p-3">Tuổi</th>
+              <th className="p-3 text-center">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student) => (
+              <tr key={student.id} className="border-b hover:bg-gray-50">
+                <td className="p-3">{student.name}</td>
+                <td className="p-3">{student.class}</td>
+                <td className="p-3">{student.age}</td>
+                <td className="p-3 text-center">
+                  <button
+                    onClick={() => handleDelete(student.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                  >
+                    Xoá
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {students.length === 0 && (
+              <tr>
+                <td colSpan="4" className="text-center text-gray-500 py-4">
+                  Không có sinh viên nào.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
